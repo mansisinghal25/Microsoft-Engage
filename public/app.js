@@ -24,9 +24,6 @@ function init() {
 }
 
 async function createRoom() {
-  document.querySelector("#createBtn").disabled = true;
-  document.querySelector("#joinBtn").disabled = true;
-
   const db = firebase.firestore();
   const roomRef = await db.collection("rooms").doc();
 
@@ -68,7 +65,7 @@ async function createRoom() {
   console.log(`New room created with SDP offer. Room ID: ${roomRef.id}`);
   document.querySelector(
     "#currentRoom"
-  ).innerText = `Current room is ${roomRef.id} - You are the caller!`;
+  ).innerText = `Your room ID is ${roomRef.id} `;
   // Code for creating a room above
 
   peerConnection.addEventListener("track", (event) => {
@@ -114,7 +111,7 @@ function joinRoom() {
       console.log("Join room: ", roomId);
       document.querySelector(
         "#currentRoom"
-      ).innerText = `Current room is ${roomId} - You are the callee!`;
+      ).innerText = `Room joined: ${roomId} `;
       await joinRoomById(roomId);
     },
     { once: true }
@@ -202,6 +199,10 @@ async function openUserMedia(e) {
   document.querySelector("#joinBtn").disabled = false;
   document.querySelector("#createBtn").disabled = false;
   document.querySelector("#hangupBtn").disabled = false;
+  document.querySelector("#muteBtn").disabled = false;
+}
+async function mute(e) {
+  localStream = null;
 }
 
 async function hangUp(e) {

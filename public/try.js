@@ -24,6 +24,7 @@ window.onload = function () {
       this.create_title();
       this.create_chat();
     }
+
     create_title() {
       var title_container = document.createElement("div");
       title_container.setAttribute("id", "title_container");
@@ -33,23 +34,68 @@ window.onload = function () {
       var title = document.createElement("h1");
       title.setAttribute("id", "title");
       title.textContent = "Mansi's Teams Clone";
+      var t1_button_container = document.createElement("div");
+      t1_button_container.setAttribute("id", "t1_button_container");
 
-      var video_container = document.createElement("div");
-      video_container.setAttribute("id", "video_container");
-      var trial = document.createElement("iframe");
-      trial.setAttribute("src", "index1.html");
-      trial.setAttribute("title", "Iframe Example");
-      trial.setAttribute("height", "200");
-      trial.setAttribute("width", "300");
-      video_container.append(trial);
-
+      var t1_button = document.createElement("button");
+      t1_button.setAttribute("id", "t1_button");
+      t1_button.innerHTML = '<i class="far fa-comments"></i>';
+      var t2_button_container = document.createElement("div");
+      t2_button_container.setAttribute("id", "t2_button_container");
+      var t2_button = document.createElement("button");
+      t2_button.setAttribute("id", "t2_button");
+      t2_button.innerHTML = '<i class="fas fa-video"></i>';
+      t1_button_container.append(t1_button);
+      t2_button_container.append(t2_button);
       title_inner_container.append(title);
+      title_inner_container.append(t1_button_container);
+      title_inner_container.append(t2_button_container);
       title_container.append(title_inner_container);
       document.body.append(title_container);
-      document.body.append(video_container);
+
+      t1_button.onclick = function () {
+        if (localStorage.getItem("name") != null) {
+          video_container.remove();
+          var chat_container = document.getElementById("chat_container");
+          chat_container.style.width = "100%";
+        }
+      };
+      t2_button.onclick = function () {
+        var video_container = document.createElement("div");
+        video_container.setAttribute("id", "video_container");
+        var trial = document.createElement("iframe");
+        trial.setAttribute("src", "index1.html");
+        trial.setAttribute("title", "Iframe Example");
+        trial.setAttribute("height", "100%");
+        trial.setAttribute("width", "100%");
+        video_container.append(trial);
+        document.body.append(video_container);
+        var chat_container = document.getElementById("chat_container");
+        chat_container.style.width = "29%";
+      };
     }
+
     create_join_form() {
       var parent = this;
+      var img = document.createElement("img");
+      img.src = "hhh.gif";
+      img.setAttribute("id", "image1");
+      var welcome_container = document.createElement("div");
+      welcome_container.setAttribute("id", "welcome_container");
+      var txt = document.createElement("h1");
+      txt.setAttribute("id", "txt");
+      txt.textContent = "Welcome,";
+      var str = txt.textContent.split("");
+      var txt1 = document.createElement("h1");
+      txt1.setAttribute("id", "txt1");
+      txt1.textContent = " Please sign in for entering the chat.";
+      var str = txt1.textContent.split("");
+      (function animate() {
+        str.length > 0
+          ? (welcome_container.innerHTML += str.shift())
+          : clearTimeout(running);
+        var running = setTimeout(animate, 90);
+      })();
 
       var join_container = document.createElement("div");
       join_container.setAttribute("id", "join_container");
@@ -61,7 +107,8 @@ window.onload = function () {
 
       var join_button = document.createElement("button");
       join_button.setAttribute("id", "join_button");
-      join_button.innerHTML = 'Sign in <i class="fas fa-sign-in-alt"></i>';
+      join_button.innerHTML =
+        'Sign in using Google <i class="fas fa-sign-in-alt"></i>';
 
       join_button.onclick = function () {
         const auth = firebase.auth();
@@ -71,11 +118,17 @@ window.onload = function () {
           parent.save_name(firebase.auth().currentUser.displayName);
           join_button_container.remove();
           join_container.remove();
+          img.remove();
+          welcome_container.remove();
+          txt.remove();
           parent.create_chat();
         });
       };
 
       join_button_container.append(join_button);
+      document.body.append(txt);
+      document.body.append(welcome_container);
+      document.body.append(img);
       document.body.append(join_button_container);
     }
     create_load(id) {
@@ -92,6 +145,7 @@ window.onload = function () {
       loader_container.append(loader);
       container.append(loader_container);
     }
+
     create_chat() {
       var parent = this;
       var title_container = document.getElementById("title_container");
@@ -153,12 +207,10 @@ window.onload = function () {
       chat_logout.textContent = `${localStorage.getItem("name")} • logout`;
       chat_logout.onclick = function () {
         localStorage.clear();
-        self.location = "index1.html";
-        //parent.home();
+        parent.home();
       };
 
       chat_logout_container.append(chat_logout);
-      chat_logout_container.append(trial);
       chat_input_container.append(chat_input, chat_input_send);
       chat_inner_container.append(
         chat_content_container,
