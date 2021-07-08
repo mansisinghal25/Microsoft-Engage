@@ -1,0 +1,24 @@
+{
+  "name": "firebasertc",
+  "version": "1.0.0",
+  "description": "This is the GitHub repo for the FirebaseRTC codelab. This will teach you how  to use Firebase Cloudstore for signalling in a WebRTC video chat application.",
+  "main": "index.js",
+  "dependencies": {
+    "@firebase/firestore": "^2.3.8",
+    "firebase": "^8.7.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mansisinghal25/Teams-Clone-1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mansisinghal25/Teams-Clone-1/issues"
+  },
+  "homepage": "https://github.com/mansisinghal25/Teams-Clone-1#readme"
+}

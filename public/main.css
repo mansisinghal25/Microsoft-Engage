@@ -1,0 +1,137 @@
+body {
+  background-color: #fff; /*#f6f6f6, EBEBD3, fafafa*/
+  background: url(./bg.jpg);
+  background-size: cover;
+  font-family: Roboto;
+  font-weight: 900;
+  overflow: hidden;
+}
+* {
+  outline: none;
+  border: 2px;
+  padding: 0;
+  margin: 0;
+}
+
+#title_container {
+  width: 100%;
+  height: 100px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #9370db; /*this is the final colour for the website*/
+  border-bottom: 5px solid #fff;
+  box-shadow: 0 0 30px -18px #9370db;
+}
+#title_inner_container {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* background-color: #083D77; */
+  border-radius: 200px;
+}
+#title {
+  display: inline-block;
+  color: #fff; /*EBEBD3, C5283D*/
+  font-size: 45px;
+  letter-spacing: 2px;
+  user-select: none;
+}
+
+#message {
+  background: white;
+  margin-top: 10px;
+  max-width: 360px;
+  margin: 100px auto 16px;
+  padding: 32px 24px;
+  border-radius: 3px;
+}
+
+#message h2 {
+  color: #ffa100;
+  font-weight: bold;
+  font-size: 16px;
+  margin: 0 0 8px;
+}
+
+#message h1 {
+  font-size: 22px;
+  font-weight: 300;
+  color: rgba(0, 0, 0, 0.6);
+  margin: 0 0 16px;
+}
+
+#message p {
+  line-height: 140%;
+  margin: 16px 0 24px;
+  font-size: 14px;
+}
+
+#message a {
+  display: block;
+  text-align: center;
+  background: #039be5;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: white;
+  padding: 16px;
+  border-radius: 4px;
+}
+
+#message,
+#message a {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+#load {
+  color: rgba(0, 0, 0, 0.4);
+  text-align: center;
+  font-size: 13px;
+}
+
+@media (max-width: 600px) {
+  body,
+  #message {
+    margin-top: 0;
+    background: white;
+    box-shadow: none;
+  }
+
+  body {
+    border-top: 16px solid #ffa100;
+  }
+}
+
+body {
+  margin: 1em;
+}
+
+button {
+  margin: 0.2em 0.1em;
+}
+
+div#videos {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+div#videos > video {
+  background: transparent;
+  width: 640px;
+  height: 100%;
+  display: block;
+  margin: 1em;
+}
+
+.mdc-button--raised:not(:disabled),
+.mdc-button--unelevated:not(:disabled) {
+  background-color: #9370db;
+  justify-content: center;
+}
