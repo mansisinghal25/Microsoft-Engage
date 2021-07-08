@@ -34,9 +34,19 @@ window.onload = function () {
       title.setAttribute("id", "title");
       title.textContent = "Mansi's Teams Clone";
 
+      var video_container = document.createElement("div");
+      video_container.setAttribute("id", "video_container");
+      var trial = document.createElement("iframe");
+      trial.setAttribute("src", "index1.html");
+      trial.setAttribute("title", "Iframe Example");
+      trial.setAttribute("height", "200");
+      trial.setAttribute("width", "300");
+      video_container.append(trial);
+
       title_inner_container.append(title);
       title_container.append(title_inner_container);
       document.body.append(title_container);
+      document.body.append(video_container);
     }
     create_join_form() {
       var parent = this;
@@ -112,6 +122,7 @@ window.onload = function () {
       chat_input.placeholder = `${localStorage.getItem(
         "name"
       )}, Type your message here...`;
+
       chat_input.onkeyup = function () {
         if (chat_input.value.length > 0) {
           chat_input_send.removeAttribute("disabled");
@@ -122,6 +133,7 @@ window.onload = function () {
             if (chat_input.value.length <= 0) {
               return;
             }
+
             parent.create_load("chat_content_container");
             parent.send_message(chat_input.value);
             chat_input.value = "";
@@ -146,6 +158,7 @@ window.onload = function () {
       };
 
       chat_logout_container.append(chat_logout);
+      chat_logout_container.append(trial);
       chat_input_container.append(chat_input, chat_input_send);
       chat_inner_container.append(
         chat_content_container,
@@ -153,8 +166,10 @@ window.onload = function () {
         chat_logout_container
       );
       chat_container.append(chat_inner_container);
+
       document.body.append(chat_container);
       parent.create_load("chat_content_container");
+
       this.refresh_chat();
     }
     save_name(name) {
