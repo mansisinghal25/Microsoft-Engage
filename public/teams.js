@@ -1,5 +1,5 @@
 window.onload = function () {
-  // Your web app's Firebase configuration
+  // Adding the web app's Firebase configurations
   var firebaseConfig = {
     apiKey: "AIzaSyB9ljMRErZ35zJ-79mi11Kst5AUBgw1Vq4",
     authDomain: "teams-clone-2fb09.firebaseapp.com",
@@ -10,22 +10,25 @@ window.onload = function () {
     appId: "1:737191486060:web:21c1b289c21e2ca6a52e49",
     measurementId: "G-S12V1CCYKC",
   };
-  // Initialize Firebase
+  // Initializing Firebase
   firebase.initializeApp(firebaseConfig);
   var db = firebase.database();
 
   class M_CHAT {
     home() {
+      //function for creating the home page
       document.body.innerHTML = "";
       this.create_title();
       this.create_join_form();
     }
     chat() {
+      //function for creating chat page elements
       this.create_title();
       this.create_chat();
     }
 
     create_title() {
+      // creates the main header of the webpage
       var title_container = document.createElement("div");
       title_container.setAttribute("id", "title_container");
       var title_inner_container = document.createElement("div");
@@ -37,6 +40,7 @@ window.onload = function () {
       var t1_button_container = document.createElement("div");
       t1_button_container.setAttribute("id", "t1_button_container");
 
+      // Adding the two chat and video chat buttons in the header
       var t1_button = document.createElement("button");
       t1_button.setAttribute("id", "t1_button");
       t1_button.innerHTML = '<i class="far fa-comments"></i>';
@@ -54,6 +58,7 @@ window.onload = function () {
       document.body.append(title_container);
 
       t1_button.onclick = function () {
+        //function that displays the chat element on full screen
         if (localStorage.getItem("name") != null) {
           video_container.remove();
           var chat_container = document.getElementById("chat_container");
@@ -61,10 +66,11 @@ window.onload = function () {
         }
       };
       t2_button.onclick = function () {
+        //function that calls the video calling html file as an iframe and displays both chat and videochat on the webpage.
         var video_container = document.createElement("div");
         video_container.setAttribute("id", "video_container");
         var trial = document.createElement("iframe");
-        trial.setAttribute("src", "index1.html");
+        trial.setAttribute("src", "index1.html"); //index1 is the html file for video calling page
         trial.setAttribute("title", "Iframe Example");
         trial.setAttribute("height", "100%");
         trial.setAttribute("width", "100%");
@@ -76,6 +82,7 @@ window.onload = function () {
     }
 
     create_join_form() {
+      // this function creates the initial homepage
       var parent = this;
       var img = document.createElement("img");
       img.src = "hhh.gif";
@@ -91,6 +98,7 @@ window.onload = function () {
       txt1.textContent = " Please sign in for entering the chat.";
       var str = txt1.textContent.split("");
       (function animate() {
+        //adding an animation for the text
         str.length > 0
           ? (welcome_container.innerHTML += str.shift())
           : clearTimeout(running);
@@ -111,10 +119,12 @@ window.onload = function () {
         'Sign in using Google <i class="fas fa-sign-in-alt"></i>';
 
       join_button.onclick = function () {
+        //firebase user authentication
         const auth = firebase.auth();
         const googleProvider = new firebase.auth.GoogleAuthProvider();
 
         auth.signInWithPopup(googleProvider).then(() => {
+          //pop up for signing in
           parent.save_name(firebase.auth().currentUser.displayName);
           join_button_container.remove();
           join_container.remove();
@@ -147,6 +157,7 @@ window.onload = function () {
     }
 
     create_chat() {
+      //this function creates and displays all chat related components
       var parent = this;
       var title_container = document.getElementById("title_container");
       var title = document.getElementById("title");
@@ -198,7 +209,7 @@ window.onload = function () {
           chat_input_send.classList.remove("enabled");
         }
       };
-
+      // adding the logout option which takes the user back to the home page.
       var chat_logout_container = document.createElement("div");
       chat_logout_container.setAttribute("id", "chat_logout_container");
 
@@ -224,6 +235,7 @@ window.onload = function () {
 
       this.refresh_chat();
     }
+
     save_name(name) {
       localStorage.setItem("name", name);
     }
@@ -232,7 +244,7 @@ window.onload = function () {
       if (parent.get_name() == null && message == null) {
         return;
       }
-
+      //sending the messages to the database
       var messages = db.ref("chats/");
       messages.once("value", function (snapshot) {
         var index = parseFloat(snapshot.numChildren()) + 1;
@@ -258,7 +270,7 @@ window.onload = function () {
       var chat_content_container = document.getElementById(
         "chat_content_container"
       );
-
+      //getting the messages from the database.
       var messages = db.ref("chats/");
       messages.on("value", function (snapshot) {
         chat_content_container.innerHTML = "";
@@ -330,18 +342,18 @@ window.onload = function () {
 
           chat_content_container.append(message_container);
         });
-        // Go to the recent message at the bottom of the container
+        // Going to the recent message at the bottom of the container
         chat_content_container.scrollTop = chat_content_container.scrollHeight;
       });
     }
   }
 
   app = new M_CHAT();
-  // if this is a new user then take them to the home screen
+  // if user is not logged in take them to the homepage
   if (localStorage.getItem("name") == null) {
     app.home();
   } else {
-    // else. They are a return user.
+    // else take them to the chat page.
     app.chat();
   }
 };

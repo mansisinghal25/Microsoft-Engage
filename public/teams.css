@@ -1,6 +1,6 @@
+/* This is the style sheet file for the main index.html file, setting the styles for various components of the webpage in this sheet*/
 body {
-  /* https://www.color-hex.com/color/d3d3d3 */
-  background-color: #fff; /*#f6f6f6, EBEBD3, fafafa*/
+  background-color: #fff;
   background: url(./bg.jpg);
   background-size: cover;
   font-family: Roboto;
@@ -24,7 +24,7 @@ body {
   justify-content: center;
   align-items: center;
 
-  background-color: #9370db; /*this is the final colour for the website*/
+  background-color: #9370db; /* theme colour*/
   border-bottom: 5px solid #fff;
   box-shadow: 0 0 30px -18px #9370db;
 }
@@ -35,8 +35,6 @@ body {
   display: flex;
 
   align-items: center;
-
-  /* background-color: #083D77; */
   border-radius: 200px;
 }
 #title {
@@ -44,7 +42,7 @@ body {
 
   left: 30px;
   display: inline-block;
-  color: rgb(250, 248, 248); /*EBEBD3, C5283D*/
+  color: rgb(250, 248, 248);
   font-size: 45px;
   letter-spacing: 2px;
   user-select: none;
@@ -268,7 +266,7 @@ body {
 .enabled {
   transition: background-color 0.5s;
   color: #fff;
-  background-color: #9370db; /*#5B7553;*/
+  background-color: #9370db;
   cursor: pointer;
 }
 #title_container.chat_title_container {
@@ -349,15 +347,15 @@ body {
   background-color: #9370db;
   color: #8a2be2;
 }
-/* width */
+/* Scroll bar for chat */
 ::-webkit-scrollbar {
   width: 6px;
 }
-/* Track */
+
 ::-webkit-scrollbar-track {
   background: #fff;
 }
-/* Handle */
+
 ::-webkit-scrollbar-thumb {
   background: #9370db;
   border-radius: 5px;

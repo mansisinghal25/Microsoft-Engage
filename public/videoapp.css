@@ -1,5 +1,6 @@
+/*this is the style sheet for index1.html */
 body {
-  background-color: #fff; /*#f6f6f6, EBEBD3, fafafa*/
+  background-color: #fff;
   background: url(./bg.jpg);
   background-size: cover;
   font-family: Roboto;
@@ -21,7 +22,7 @@ body {
   justify-content: center;
   align-items: center;
 
-  background-color: #9370db; /*this is the final colour for the website*/
+  background-color: #9370db;
   border-bottom: 5px solid #fff;
   box-shadow: 0 0 30px -18px #9370db;
 }
@@ -33,12 +34,11 @@ body {
   justify-content: center;
   align-items: center;
 
-  /* background-color: #083D77; */
   border-radius: 200px;
 }
 #title {
   display: inline-block;
-  color: #fff; /*EBEBD3, C5283D*/
+  color: #fff;
   font-size: 45px;
   letter-spacing: 2px;
   user-select: none;
@@ -131,6 +131,7 @@ div#videos > video {
   margin: 1em;
 }
 
+/*changing the default colour of the mdc buttons */
 .mdc-button--raised:not(:disabled),
 .mdc-button--unelevated:not(:disabled) {
   background-color: #9370db;
