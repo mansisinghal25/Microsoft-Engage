@@ -1,7 +1,7 @@
 # Microsoft Teams Clone
 
 
-This is how the welcome page looks:
+This is what the welcome page looks like:
 ![](screenshots/Screenshot%202022-02-11%20at%201.42.01%20PM.png)
 
 This is how the application looks when you have logged in:
